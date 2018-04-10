@@ -27,3 +27,9 @@ RUN neo_tarball=$(basename $neo_tarball_url) \
 
 # Install NEO
 RUN /neo/neo-installer.sh
+
+# Add a systemd unit for the NEO service.
+ADD neo.service /usr/lib/systemd/system/
+
+# Enable the neo systemd service.
+RUN systemctl enable neo

@@ -1,0 +1,11 @@
+[Unit]
+Description=Mellanox NEO
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+ExecStart=/opt/neo/neoservice start
+ExecStop=/opt/neo/neoservice stop
+
+[Install]
+WantedBy=multi-user.target

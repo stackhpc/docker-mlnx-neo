@@ -14,8 +14,3 @@ docker run \
     -v /dev/log:/dev/log \
     -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
     $neo_image_name \
-
-# Start the NEO service.
-docker exec \
-    $neo_container_name \
-    /opt/neo/neoservice start
