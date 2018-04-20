@@ -9,6 +9,9 @@ ARG neo_tarball_url
 # Set an environment variable to tell systemd it's running under Docker.
 ENV container=docker
 
+# Systemd does not terminate on SIGTERM.
+STOPSIGNAL SIGRTMIN+3
+
 # Download the NEO tarball.
 ADD $neo_tarball_url /
 
