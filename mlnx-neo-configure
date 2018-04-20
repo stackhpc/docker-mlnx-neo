@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Bind mount a script here to perform customisation of NEO on startup.
+echo "mlnx-neo-configure: No startup customisation applied"

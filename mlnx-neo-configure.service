@@ -1,0 +1,12 @@
+[Unit]
+Description=Mellanox NEO startup configuration
+After=network.target remote-fs.target nss-lookup.target
+Before=neo.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mlnx-neo-configure
+RemainAfterExit=yes
+
+[Install]
+WantedBy=neo.service

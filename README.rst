@@ -31,5 +31,9 @@ container. To use a different image, set ``$NEO_IMAGE_NAME``.
 By default, the container will be named ``mlnx_neo``. To use a different name,
 set ``$NEO_CONTAINER_NAME``.
 
+It may be desirable to apply additional configuration to NEO prior to running
+the neo service. This can be done by setting ``$NEO_STARTUP_CONFIG_PATH`` to
+the path of a script.
+
 Run the ``run.sh`` script to create a Docker container. The container will be
 privileged, and use host networking.

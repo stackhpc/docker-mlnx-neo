@@ -34,5 +34,13 @@ RUN /neo/neo-installer.sh
 # Add a systemd unit for the NEO service.
 ADD neo.service /usr/lib/systemd/system/
 
-# Enable the neo systemd service.
-RUN systemctl enable neo
+# Add a noop startup configuration script. This can be customised by bind
+# mounting a script to /usr/bin/mlnx-neo-configure.
+ADD mlnx-neo-configure /usr/bin/mlnx-neo-configure
+RUN chmod +x /usr/bin/mlnx-neo-configure
+
+# Add a systemd unit for running the startup configuration script.
+ADD mlnx-neo-configure.service /usr/lib/systemd/system/
+
+# Configure NEO and NEO startup configuration script to run on startup.
+RUN systemctl enable neo mlnx-neo-configure
