@@ -44,3 +44,6 @@ ADD mlnx-neo-configure.service /usr/lib/systemd/system/
 
 # Configure NEO and NEO startup configuration script to run on startup.
 RUN systemctl enable neo mlnx-neo-configure
+
+# Various systemd services aren't required in a container.
+RUN systemctl disable network
