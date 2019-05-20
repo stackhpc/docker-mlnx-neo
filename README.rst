@@ -37,3 +37,12 @@ the path of a script.
 
 Run the ``run.sh`` script to create a Docker container. The container will be
 privileged, and use host networking.
+
+Known issues and workarounds
+----------------------------------
+Currently you need to disable IPv6 from all Mellanox switches with command ``no ipv6 enable``
+other why those devices are shown on unhealthy state and errors like these will be
+generated to log ``/opt/neo/controller/log/events.log`` :
+``[Application] [Jobs] [Job failed] [Job for 'Device Management Discovery' failed. 'IPv6 address'] [Please check job result for errors]``
+
+or enable IPv6 to Docker daemon and configure IPv6 connectivity between NEO and switches.
