@@ -38,6 +38,5 @@ the path of a script.
 Run the ``run.sh`` script to create a Docker container. The container will be
 privileged, and use host networking.
 
-Alternatively, use the
-[mlnx-neo role](https://galaxy.ansible.com/stackhpc/mlnx-neo) to deploy the
-container.
+Alternatively, use the `mlnx-neo Ansible role
+<https://galaxy.ansible.com/stackhpc/mlnx-neo>`__ to deploy the container.
