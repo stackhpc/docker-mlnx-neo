@@ -31,6 +31,15 @@ RUN neo_tarball=$(basename $neo_tarball_url) \
 # Install NEO
 RUN /neo/neo-installer.sh
 
+#Hide default http welcome page
+RUN mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.bak
+
+#Modify the config to allow us to restric access to root html directory
+COPY httpd/httpd.conf /etc/httpd/conf/
+
+#Add access list to root directory
+COPY httpd/.htaccess /var/www/html/
+
 # Add a systemd unit for the NEO service.
 ADD neo.service /usr/lib/systemd/system/
 
