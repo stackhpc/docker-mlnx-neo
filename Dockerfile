@@ -31,6 +31,19 @@ RUN neo_tarball=$(basename $neo_tarball_url) \
 # Install NEO
 RUN /neo/neo-installer.sh
 
+#Hide default http welcome page
+RUN mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.bak
+
+#Modify the config to allow us to restric access to root html directory
+#We need to search the config file for the relevant options and then
+#modify the second one, to minimize the possibility of a change to the
+#structure of the config file breaking this command
+RUN export LN=$(grep -n "AllowOverride None" /etc/httpd/conf/httpd.conf | sed '2q;d' | awk -F  ":" '{ print $1}') && \
+    sed -i "${LN}s/.*/    AllowOverride All/" /etc/httpd/conf/httpd.conf 
+
+#Add access list to root directory
+COPY httpd/.htaccess /var/www/html/
+
 # Add a systemd unit for the NEO service.
 ADD neo.service /usr/lib/systemd/system/
 
